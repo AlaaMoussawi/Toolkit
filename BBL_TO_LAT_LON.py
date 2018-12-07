@@ -16,6 +16,7 @@ def get_lat_lon_from_bin(bin_number):
         output = (requests.get(url = base_url, params = PARAMS)).json()
     
         return (output['bin']['latitudeInternalLabel'], output['bin']['longitudeInternalLabel'])
+
     except:
         return(0, 0)
     
@@ -27,12 +28,13 @@ def get_lat_lon_from_bin_array(bin_numbers):
     result = []
     
     for bin_number in bin_numbers:
+
         try:
             PARAMS = {'bin':bin_number, 'app_id':api_id, 'app_key':api_key}
             output = (requests.get(url = base_url, params = PARAMS)).json()
             result.append( (output['bin']['latitudeInternalLabel'], output['bin']['longitudeInternalLabel']) )
 
         except:
-            result.append( (0, 0 )
+            result.append( (0, 0 ) )
             
     return result
